@@ -1,0 +1,129 @@
+.header {
+  @apply bg-white shadow-sm;
+
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+
+    .logo-container {
+      @apply flex-shrink-0 flex items-center;
+    }
+
+    .nav {
+      @apply hidden sm:-my-px sm:ml-6 sm:flex sm:space-x-8;
+
+      .item {
+        @apply border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium;
+
+        &.active {
+          @apply border-indigo-500 text-gray-900;
+        }
+      }
+    }
+
+
+    .mobile-button {
+      @apply bg-white inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+    }
+
+    .login-buttons {
+      @apply hidden sm:pt-4 sm:pb-3 sm:flex sm:items-center;
+
+      .item {
+        @apply mr-2 inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-white text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+
+        svg {
+          @apply ml-2 -mr-0.5 h-4 w-4;
+
+          path {
+            @apply text-gray-700;
+          }
+        }
+      }
+    }
+
+    .profile {
+      @apply hidden sm:ml-6 sm:flex sm:items-center;
+
+      .pic-button {
+        @apply bg-white flex text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+      }
+
+      .dropdown {
+        @apply origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none;
+
+        .item {
+          @apply block px-4 py-2 text-sm text-gray-700;
+        }
+      }
+    }
+  }
+
+  .nav-mobile {
+    @apply sm:hidden;
+
+    .nav {
+      @apply pt-2 pb-3 space-y-1;
+
+      .item {
+        @apply border-transparent text-gray-600 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-800 block pl-3 pr-4 py-2 border-l-4 text-base font-medium;
+
+        &.active {
+          @apply bg-indigo-50 border-indigo-500 text-indigo-700;
+        }
+      }
+    }
+
+    .login-buttons {
+      @apply pt-2 pb-3 border-t border-gray-300 flex;
+
+      .item {
+        @apply mt-2 mx-2 flex-1 inline-flex items-center px-3 py-2 border border-gray-300 shadow-sm text-sm leading-4 font-medium rounded-md text-white text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500;
+
+        svg {
+          @apply ml-2 -mr-0.5 h-4 w-4;
+
+          path {
+            @apply text-gray-700;
+          }
+        }
+      }
+    }
+
+    .profile {
+      @apply pt-4 pb-3 border-t border-gray-200;
+
+      .info {
+        @apply flex items-center px-4;
+
+        .image {
+          @apply flex-shrink-0;
+
+          img {
+            @apply h-10 w-10 rounded-full;
+          }
+        }
+
+        .info-container {
+          @apply ml-3;
+
+          .name {
+            @apply text-base font-medium text-gray-800;
+          }
+
+          .email {
+            @apply text-sm font-medium text-gray-500;
+          }
+        }
+
+      }
+
+      .actions {
+        @apply mt-3 space-y-1;
+
+        .item {
+          @apply block px-4 py-2 text-base font-medium text-gray-500 hover:text-gray-800 hover:bg-gray-100;
+        }
+      }
+    }
+  }
+}
