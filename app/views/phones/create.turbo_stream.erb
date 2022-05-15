@@ -1,0 +1,16 @@
+<%= turbo_stream.append "phones", @phone %>
+
+<%= turbo_stream.replace "new_phone" do %>
+  <%= turbo_frame_tag "new_phone" do %>
+    <div class="flex flex-row-reverse mb-4">
+      <%= link_to "New phone number", new_phone_path, class: "button--primary" %>
+    </div>
+  <% end %>
+<% end %>
+
+<%= turbo_stream.replace "empty_phones" do %>
+  <%= turbo_frame_tag "empty_phones" %>
+<% end %>
+
+
+<%= render_flash_stream %>

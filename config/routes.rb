@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   get 'dashboard', to: 'pages#dashboard'
   get 'auth/:provider/callback', to: 'sessions#create'
   delete 'sessions', to: 'sessions#destroy'
+
+  resources :phones
 end

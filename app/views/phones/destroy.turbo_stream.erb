@@ -1,0 +1,8 @@
+<%= turbo_stream.remove @phone %>
+<% if current_user.user_phone_numbers.kept.empty? %>
+  <%= turbo_stream.replace "empty_phones" do %>
+    <%= turbo_frame_tag "empty_phones" do%>
+      <%= render 'empty_phones' %>
+    <% end %>
+  <% end %>
+<% end %>

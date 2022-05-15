@@ -1,0 +1,17 @@
+<% content_for :title, "Phone numbers" %>
+
+<%= turbo_frame_tag "new_phone" do %>
+  <div class="flex flex-row-reverse mb-4">
+    <%= link_to "New phone number", new_phone_path, class: "button--primary" %>
+  </div>
+<% end %>
+
+<%= turbo_frame_tag "phones" do %>
+  <%= render @phones %>
+<% end %>
+
+<% if @phones.empty? %>
+  <%= turbo_frame_tag "empty_phones" do %>
+    <%= render 'empty_phones' %>
+  <% end %>
+<% end %>

@@ -1,0 +1,270 @@
+#phones_new, #phones_create {
+  #new_phone {
+    div.new_phone_container {
+      @apply max-w-md my-8 bg-white overflow-hidden shadow rounded-lg;
+    } 
+  }
+
+  form {
+    @apply flex flex-col;
+
+    div {
+      @apply my-3;
+
+      .field_with_errors {
+        @apply m-0;
+      }
+
+      &.input_container {
+        @apply relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600;
+
+        label {
+          @apply absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900;
+        }
+
+        input {
+          @apply block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm;
+        }
+
+        &.with_error {
+          @apply border-red-300;
+
+          input {
+            @apply text-red-900 placeholder-red-300;
+          }
+
+          label {
+            @apply text-red-900;
+          }
+        }
+      }
+    }
+  }
+}
+
+#phones_edit {
+  div.edit_phone_container {
+    @apply max-w-md my-8 bg-white overflow-hidden shadow rounded-lg;
+  } 
+
+  form {
+    @apply flex flex-col;
+
+    div {
+      @apply my-3;
+
+      .field_with_errors {
+        @apply m-0;
+      }
+
+      &.input_container {
+        @apply relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600;
+
+        label {
+          @apply absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900;
+        }
+
+        input {
+          @apply block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm;
+        }
+
+        &.with_error {
+          @apply border-red-300;
+
+          input {
+            @apply text-red-900 placeholder-red-300;
+          }
+
+          label {
+            @apply text-red-900;
+          }
+        }
+      }
+    }
+  }
+}
+
+#phones_index {
+  #new_phone {
+    div.new_phone_container {
+      @apply w-fit my-8 bg-white overflow-hidden shadow rounded-lg;
+    } 
+  }
+
+  form {
+    @apply flex flex-col md:flex-row;
+
+    div {
+      @apply my-3 md:mx-3 md:my-0;
+
+      .field_with_errors {
+        @apply m-0;
+      }
+
+      &.input_container {
+        @apply relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600;
+
+        label {
+          @apply absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900;
+        }
+
+        input {
+          @apply block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm;
+        }
+        &.with_error {
+          @apply border-red-300;
+
+          input {
+            @apply text-red-900 placeholder-red-300;
+          }
+
+          label {
+            @apply text-red-900;
+          }
+        }
+      }
+    }
+  }
+
+  .edit_phone {
+    form {
+      @apply flex flex-col;
+
+      div {
+        @apply my-3;
+
+        .field_with_errors {
+          @apply m-0;
+        }
+
+        &.input_container {
+          @apply relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-indigo-600 focus-within:border-indigo-600;
+
+          label {
+            @apply absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900;
+          }
+
+          input {
+            @apply block w-full border-0 p-0 text-gray-900 placeholder-gray-500 focus:ring-0 sm:text-sm;
+          }
+
+          &.with_error {
+            @apply border-red-300;
+
+            input {
+              @apply text-red-900 placeholder-red-300;
+            }
+
+            label {
+              @apply text-red-900;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+#phones {
+  @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3;
+
+  .container {
+    @apply col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200;
+
+    .top_wrapper {
+      @apply relative w-full flex items-center justify-between p-6 space-x-6;
+
+      .remove {
+        @apply absolute inline-flex top-0 right-0 items-center p-1 border border-transparent rounded-full shadow-sm text-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+      }
+
+      .info_wrapper {
+        @apply flex-1 truncate;
+
+        div {
+          @apply flex items-center space-x-3;
+
+          h3 {
+            @apply text-gray-900 text-sm font-medium truncate;
+          }
+
+          span {
+            @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+
+            svg {
+              @apply -ml-0.5 mr-1.5 h-2 w-2;
+            }
+
+            &.draft {
+              @apply bg-gray-100 text-gray-800;
+
+              svg {
+                @apply text-gray-400
+              }
+            }
+
+            &.ready {
+              @apply bg-green-100 text-green-800;
+
+              svg {
+                @apply text-green-400
+              }
+            }
+
+            &.error {
+              @apply bg-red-100 text-red-800;
+
+              svg {
+                @apply text-red-400
+              }
+            }
+          }
+        }
+
+        p {
+          @apply mt-1 text-gray-500 text-sm truncate;
+        }
+      }
+
+
+      img {
+        @apply w-10 h-10 bg-gray-300 rounded-full flex-shrink-0;
+      }
+    }
+
+    .actions_wrapper {
+      @apply -mt-px flex divide-x divide-gray-200;
+
+      .edit {
+        @apply w-0 flex-1 flex;
+
+        a {
+          @apply relative -mr-px w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-bl-lg hover:text-gray-500;
+
+          svg {
+            @apply h-5 w-5 text-gray-400;
+          }
+          span {
+            @apply ml-3;
+          }
+        }
+      }
+
+      .start {
+        @apply -ml-px w-0 flex-1 flex;
+
+        a {
+          @apply relative w-0 flex-1 inline-flex items-center justify-center py-4 text-sm text-gray-700 font-medium border border-transparent rounded-br-lg hover:text-gray-500;
+
+          svg {
+            @apply h-5 w-5 text-gray-400;
+          }
+
+          span {
+            @apply ml-3;
+          }
+        }
+      }
+    }
+  }
+}

@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import HeaderMenuController from "./header_menu_controller.js"
 application.register("header-menu", HeaderMenuController)
+
+import FlashController from "./flash_controller.js"
+application.register("flash", FlashController)
