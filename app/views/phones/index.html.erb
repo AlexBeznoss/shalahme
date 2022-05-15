@@ -10,8 +10,8 @@
   <%= render @phones %>
 <% end %>
 
-<% if @phones.empty? %>
-  <%= turbo_frame_tag "empty_phones" do %>
+<%= turbo_frame_tag "empty_phones" do %>
+  <% if @phones.empty? %>
     <%= render 'empty_phones' %>
   <% end %>
 <% end %>

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 module UserPhoneNumbersHelper
-  BASE_URL = 'https://avatars.dicebear.com/api/'.freeze
+  BASE_URL = 'https://avatars.dicebear.com/api/'
 
   def phone_logo_url(phone)
     [

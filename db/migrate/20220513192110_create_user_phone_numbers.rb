@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CreateUserPhoneNumbers < ActiveRecord::Migration[7.0]
   def change # rubocop:disable Metrics/MethodLength
     create_table :user_phone_numbers do |t|
