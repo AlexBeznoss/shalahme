@@ -10,9 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_25_173617) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_13_192110) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "user_phone_numbers", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "number"
+    t.string "sid"
+    t.bigint "user_id", null: false
+    t.integer "status", default: 0, null: false
+    t.string "area_code", null: false
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_user_phone_numbers_on_discarded_at", where: "(discarded_at IS NULL)"
+    t.index ["user_id", "name"], name: "index_user_phone_numbers_on_user_id_and_name", unique: true, where: "(discarded_at IS NULL)"
+    t.index ["user_id"], name: "index_user_phone_numbers_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.integer "role", default: 0, null: false
@@ -27,4 +42,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_25_173617) do
     t.index ["provider", "uid"], name: "index_users_on_provider_and_uid", unique: true
   end
 
+  add_foreign_key "user_phone_numbers", "users"
 end

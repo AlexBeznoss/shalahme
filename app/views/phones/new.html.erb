@@ -1,0 +1,9 @@
+<% content_for :title, "New phone number" %>
+
+<%= turbo_frame_tag "new_phone" do %>
+  <div class="new_phone_container">
+    <div class="px-4 py-5 sm:p-6">
+      <%= render "form", phone: @phone %>
+    </div>
+  </div>
+<% end %>

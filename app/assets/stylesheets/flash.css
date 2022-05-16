@@ -1,0 +1,87 @@
+.flashes {
+  .flash_container {
+    @apply rounded-md p-4 w-full px-4 sm:px-6 lg:px-8;
+
+    .wrapper {
+      @apply flex max-w-7xl mx-auto;
+
+      .icon_wrapper {
+        @apply flex-shrink-0;
+      }
+
+      .text_wrapper {
+        @apply ml-3;
+
+        p {
+          @apply text-sm font-medium;
+
+        }
+      }
+
+      .close_wrapper {
+        @apply ml-auto pl-3;
+
+        div {
+          @apply -mx-1.5 -my-1.5;
+
+          button {
+            @apply inline-flex rounded-md p-1.5 focus:outline-none focus:ring-2 focus:ring-offset-2;
+
+            span {
+              @apply sr-only;
+            }
+          }
+        }
+      }
+    }
+
+    &.success {
+      @apply bg-green-50;
+
+      .text_wrapper p {
+        @apply text-green-800;
+      }
+
+      .close_wrapper button {
+        @apply bg-green-50 text-green-500 hover:bg-green-100 focus:ring-offset-green-50 focus:ring-green-600;
+      }
+    }
+
+    &.warning {
+      @apply bg-yellow-50;
+      
+      .text_wrapper p {
+        @apply text-yellow-700;
+      }
+
+      .close_wrapper button {
+        @apply bg-yellow-50 text-yellow-700 hover:bg-yellow-100 focus:ring-offset-yellow-50 focus:ring-yellow-600;
+      }
+    }
+
+    &.info {
+      @apply bg-blue-50;
+
+      .text_wrapper p {
+        @apply text-blue-700;
+      }
+
+      .close_wrapper button {
+        @apply bg-blue-50 text-blue-700 hover:bg-blue-100 focus:ring-offset-blue-50 focus:ring-blue-600;
+      }
+    }
+
+    &.error {
+      @apply bg-red-50;
+
+      .text_wrapper p {
+        @apply text-red-700;
+      }
+
+      .close_wrapper button {
+        @apply bg-red-50 text-red-700 hover:bg-red-100 focus:ring-offset-red-50 focus:ring-red-600;
+      }
+    }
+  }
+
+}

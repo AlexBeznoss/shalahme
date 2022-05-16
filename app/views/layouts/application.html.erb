@@ -11,9 +11,29 @@
   </head>
 
   <body class="h-full">
-    <div class="min-h-full">
+    <div id="<%= content_id %>" class="min-h-full">
       <%= render "layouts/header" %>
-      <%= yield %>
+
+      <div id="flash">
+        <%= render "layouts/flash" %>
+      </div>
+
+      <div class="py-10">
+        <% if content_for :title %>
+          <header>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h1 class="text-3xl font-bold leading-tight text-gray-900">
+                <%= content_for :title %>
+              </h1>
+            </div>
+          </header>
+        <% end %>
+        <main>
+          <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <%= yield %>
+          </div>
+        </main>
+      </div>
     </div>
   </body>
 </html>

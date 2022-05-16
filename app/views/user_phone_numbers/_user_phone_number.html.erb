@@ -1,0 +1,45 @@
+<% phone = user_phone_number %>
+
+<%= turbo_frame_tag phone, class: "container" do %>
+  <%= turbo_stream_from phone %>
+  <div class="top_wrapper">
+    <%= button_to phone_path(phone), class: "remove", method: :delete, form: { data: { turbo_confirm: "Are you sure?"}} do %>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+      </svg>
+    <% end %>
+    <div class="info_wrapper">
+      <div>
+        <h3><%= phone.name %></h3>
+        <span class="<%= phone.status %>">
+          <svg fill="currentColor" viewBox="0 0 8 8">
+            <circle cx="4" cy="4" r="3" />
+          </svg>
+          <%= phone.status %>
+        </span>
+      </div>
+      <p><%= phone.number %></p>
+    </div>
+    <img src="<%= phone_logo_url(phone) %>">
+  </div>
+  <div>
+    <div class="actions_wrapper">
+      <div class="edit">
+        <%= link_to edit_phone_path(phone) do %>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+          </svg>
+          <span>Edit</span>
+        <% end %>
+      </div>
+      <div class="start">
+        <a href="#">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" />
+          </svg>
+          <span>Start messaging</span>
+        </a>
+      </div>
+    </div>
+  </div>
+<% end %>
