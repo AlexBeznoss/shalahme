@@ -46,7 +46,7 @@ jobs:
           POSTGRES_USER: shalahme
           POSTGRES_DB: shalahme_test
           POSTGRES_PASSWORD: ""
-        ports: ["5432:5432"]
+          ports: ["5432:5432"]
 
     steps:
       - name: Checkout code
@@ -54,9 +54,6 @@ jobs:
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
-        env:
-          RAILS_ENV: test
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         with:
           bundler-cache: true
 
@@ -83,9 +80,9 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: shalahme
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
-        run: |
-          bin/rails db:setup
+          RAILS_MASTER_KEY: ${{ secrets.BUILDKITE_TOKEN  }}
+          run: |
+            bin/rails db:setup
 
       - name: Run tests
         run: bin/rails test:all
