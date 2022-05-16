@@ -41,17 +41,17 @@ jobs:
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: test
-      DB_HOST: localhost
-      DB_USER: shalahme
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
+      DATABASE_URL: postgres://postgres:@localhost:5432/test
     services:
       postgres:
         image: postgres:14.2
-        env:
-          POSTGRES_DB: shalahme_test
-          POSTGRES_USER: shalahme
-          POSTGRES_PASSWORD: ""
         ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
