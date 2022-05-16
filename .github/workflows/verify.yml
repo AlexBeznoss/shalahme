@@ -54,6 +54,12 @@ jobs:
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
+        env:
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
+        with:
+          bundler-cache: true
+        run: bundle install
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -80,10 +86,7 @@ jobs:
           PGUSER: shalahme
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         run: |
-          bundle install
           bin/rails db:setup
 
       - name: Run tests
-        run: |
-          bundle install
-          bin/rails test:all
+        run: bin/rails test:all
