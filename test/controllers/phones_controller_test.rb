@@ -16,7 +16,7 @@ module PhonesControllerTest
     test 'renders user phones' do
       user = users(:google)
       name = 'Fake name'
-      user.user_phone_numbers.create!(name:, area_code: '312')
+      user.phone_numbers.create!(name:, area_code: '312')
 
       sign_in(user)
       get phones_path
@@ -29,7 +29,7 @@ module PhonesControllerTest
       user = users(:github)
       other_user = users(:google)
       name = 'fake name'
-      other_user.user_phone_numbers.create!(name:, area_code: '312')
+      other_user.phone_numbers.create!(name:, area_code: '312')
 
       sign_in(user)
       get phones_path
@@ -41,7 +41,7 @@ module PhonesControllerTest
     test 'not renders discarded phones' do
       user = users(:google)
       name = 'Fake name'
-      user.user_phone_numbers.create!(
+      user.phone_numbers.create!(
         name:,
         area_code: '312',
         discarded_at: Time.current
@@ -84,7 +84,7 @@ module PhonesControllerTest
       }
 
       sign_in(user)
-      assert_changes -> { user.reload.user_phone_numbers.count } do
+      assert_changes -> { user.reload.phone_numbers.count } do
         post phones_path, params:
       end
       assert_equal params[:user_phone_number], UserPhoneNumber.last.attributes.symbolize_keys.slice(:name, :area_code)
@@ -113,7 +113,7 @@ module PhonesControllerTest
 
     test 'updates phone number' do
       user = users(:google)
-      number = user.user_phone_numbers.create!(name: 'Fake name', area_code: '312')
+      number = user.phone_numbers.create!(name: 'Fake name', area_code: '312')
       params = {
         user_phone_number: {
           name: 'New name'
@@ -141,7 +141,7 @@ module PhonesControllerTest
     test 'discards phone number' do
       time = Time.current
       user = users(:google)
-      number = user.user_phone_numbers.create!(name: 'Fake name', area_code: '312')
+      number = user.phone_numbers.create!(name: 'Fake name', area_code: '312')
 
       sign_in(user)
       travel_to(time) do

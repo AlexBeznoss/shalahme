@@ -5,15 +5,15 @@ class PhonesController < ApplicationController
   before_action :find_phone, only: %i[edit update destroy]
 
   def index
-    @phones = current_user.user_phone_numbers.kept
+    @phones = current_user.phone_numbers.kept
   end
 
   def new
-    @phone = current_user.user_phone_numbers.build
+    @phone = current_user.phone_numbers.build
   end
 
   def create
-    @phone = current_user.user_phone_numbers.build(phone_params)
+    @phone = current_user.phone_numbers.build(phone_params)
 
     if @phone.save
       flash.now[:success] = 'Phone created! It will be ready for usage soon.'
@@ -62,6 +62,6 @@ class PhonesController < ApplicationController
   end
 
   def find_phone
-    @phone = current_user.user_phone_numbers.kept.find(params[:id])
+    @phone = current_user.phone_numbers.kept.find(params[:id])
   end
 end

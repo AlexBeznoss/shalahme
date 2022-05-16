@@ -9,7 +9,7 @@ module Phones
 
     test 'updates phone number' do
       user = users(:google)
-      user.user_phone_numbers.create!(name: 'Cool phone number', area_code: '216')
+      user.phone_numbers.create!(name: 'Cool phone number', area_code: '216')
 
       sign_in user, :visit
       visit phones_path
@@ -29,8 +29,8 @@ module Phones
 
     test 'show errors' do
       user = users(:google)
-      phone = user.user_phone_numbers.create!(name: 'Cool phone number', area_code: '216')
-      user.user_phone_numbers.create!(name: 'Another phone number', area_code: '216')
+      phone = user.phone_numbers.create!(name: 'Cool phone number', area_code: '216')
+      user.phone_numbers.create!(name: 'Another phone number', area_code: '216')
 
       sign_in user, :visit
       visit phones_path

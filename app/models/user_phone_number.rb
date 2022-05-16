@@ -12,7 +12,6 @@ class UserPhoneNumber < ApplicationRecord
   }
 
   validates :name, :area_code, presence: true
-  validates :area_code, length: { is: 3 }
-  validates :area_code, numericality: { only_integer: true }
+  validates :area_code, length: { is: 3 }, numericality: { only_integer: true }
   validates :name, uniqueness: { scope: :user_id, conditions: -> { kept } }
 end
