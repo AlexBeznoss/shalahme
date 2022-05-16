@@ -80,9 +80,14 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: shalahme
-          RAILS_MASTER_KEY: ${{ secrets.BUILDKITE_TOKEN  }}
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         run: |
           bin/rails db:setup
 
       - name: Run tests
+        env:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: shalahme
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         run: bin/rails test:all
