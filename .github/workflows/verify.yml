@@ -39,14 +39,25 @@ jobs:
   tests:
     name: Tests
     runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: test
+      DB_HOST: localhost
+      DB_USER: shalahme
+      RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
+      DATABASE_URL: postgres://postgres:@localhost:5432/shalahme_test
     services:
       postgres:
         image: postgres:14
         env:
-          POSTGRES_USER: shalahme
           POSTGRES_DB: shalahme_test
+          POSTGRES_USER: "shalahme"
           POSTGRES_PASSWORD: ""
         ports: ["5432:5432"]
+        options:
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
 
     steps:
       - name: Checkout code
@@ -76,18 +87,7 @@ jobs:
           yarn install --pure-lockfile
 
       - name: Setup test database
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: shalahme
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
-        run: |
-          bin/rails db:setup
+        run: bin/rails db:setup
 
       - name: Run tests
-        env:
-          RAILS_ENV: test
-          PGHOST: localhost
-          PGUSER: shalahme
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         run: bin/rails test:all
