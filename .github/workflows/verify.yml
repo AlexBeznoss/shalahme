@@ -46,7 +46,7 @@ jobs:
           POSTGRES_USER: shalahme
           POSTGRES_DB: shalahme_test
           POSTGRES_PASSWORD: ""
-          ports: ["5432:5432"]
+        ports: ["5432:5432"]
 
     steps:
       - name: Checkout code
