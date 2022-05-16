@@ -81,8 +81,8 @@ jobs:
           PGHOST: localhost
           PGUSER: shalahme
           RAILS_MASTER_KEY: ${{ secrets.BUILDKITE_TOKEN  }}
-          run: |
-            bin/rails db:setup
+        run: |
+          bin/rails db:setup
 
       - name: Run tests
         run: bin/rails test:all
