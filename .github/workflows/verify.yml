@@ -57,6 +57,7 @@ jobs:
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         with:
+          ruby-version: '3.1.2'
           bundler-cache: true
 
       - name: Setup Node
