@@ -4,7 +4,7 @@ on: [push]
 jobs:
   linters:
     name: Linters
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -38,7 +38,7 @@ jobs:
 
   tests:
     name: Tests
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     services:
       postgres:
         image: postgres:14
@@ -54,11 +54,6 @@ jobs:
 
       - name: Setup Ruby and install gems
         uses: ruby/setup-ruby@v1
-        env:
-          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
-        with:
-          ruby-version: '3.1.2'
-          bundler-cache: true
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -85,7 +80,10 @@ jobs:
           PGUSER: shalahme
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         run: |
+          bundle install
           bin/rails db:setup
 
       - name: Run tests
-        run: bin/rails test:all
+        run: |
+          bundle install
+          bin/rails test:all
