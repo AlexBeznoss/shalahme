@@ -1,0 +1,5 @@
+#users_edit {
+  .edit_user_container {
+    @apply max-w-md my-8 bg-white overflow-hidden shadow rounded-lg;
+  }
+}

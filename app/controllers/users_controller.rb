@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
       respond_to do |f|
         f.turbo_stream
-        f.html { redirect_to phones_path }
+        f.html { redirect_to users_path }
       end
     else
       render :edit, status: :unprocessable_entity

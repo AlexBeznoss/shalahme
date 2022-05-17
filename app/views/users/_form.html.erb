@@ -1,9 +1,10 @@
-<%= form_with model: user, url: user_path(user), class: "flex items-center px-4 py-4 sm:px-6" do |f| %>
+<%= form_with model: user, url: user_path(user), class: "flex items-center px-4 sm:px-6" do |f| %>
   <div class="min-w-0 flex-1 flex items-center">
-    <div>
+    <div class="relative">
       <%= f.label :role, class: "absolute -top-2 left-2 -mt-px inline-block px-1 bg-white text-xs font-medium text-gray-900" %>
-      <%= f.select :role, User.roles.keys, {}, { class: "mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md" } %>
+      <%= f.select :role, User.roles.keys, {}, { class: "block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 rounded-md" } %>
     </div>
+
     <div class="ml-3">
       <%= f.submit 'Update', class: "button--primary" %>
       <%= link_to 'Cancel', users_path, class: 'button--default' %>

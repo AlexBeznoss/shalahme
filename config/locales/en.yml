@@ -31,3 +31,6 @@
 
 en:
   login_warning: "Sorry, but you have no access yet. Please sign in first."
+  time:
+    formats:
+      default: "%d/%m/%Y %H:%M"

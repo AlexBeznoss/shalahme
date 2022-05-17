@@ -3,7 +3,11 @@
 <%= turbo_frame_tag "users" do %>
   <div class="mt-10 bg-white shadow overflow-hidden sm:rounded-md">
     <ul role="list" class="divide-y divide-gray-200">
-      <%= render @users %>
+      <% @users.each do |user| %>
+        <li class="h-24 flex items-center">
+          <%= render user %>
+        </li>
+      <% end %>
     </ul>
   </div>
 <% end %>
