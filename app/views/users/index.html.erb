@@ -1,0 +1,10 @@
+<% content_for :title, "Users" %>
+
+<%= turbo_frame_tag "users" do %>
+  <div class="mt-10 bg-white shadow overflow-hidden sm:rounded-md">
+    <ul role="list" class="divide-y divide-gray-200">
+      <%= render @users %>
+    </ul>
+  </div>
+<% end %>
+
