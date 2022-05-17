@@ -7,3 +7,7 @@
 @import "./phones.css";
 @import "./flash.css";
 
+.turbo-progress-bar {
+  @apply h-1 bg-blue-700;
+}
+
