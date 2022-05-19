@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  rescue_from ActionPolicy::Unauthorized do |_ex|
+    flash[:error] = t('unauthorized_error')
+
+    redirect_to root_path
+  end
+
   private
 
   def require_signin

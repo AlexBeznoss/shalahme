@@ -9,16 +9,16 @@ module Users
 
     test 'updates user' do
       user = users(:google)
+      user.update(role: :admin)
 
       sign_in user, :visit
       visit users_path
 
       assert_selector 'p', text: 'default'
 
-      edit_buttons = find_all "a", text: "Edit"
-      edit_buttons.first.click
+      click_on 'Edit'
 
-      select "admin"
+      select 'admin'
       click_on 'Update'
 
       assert_selector(

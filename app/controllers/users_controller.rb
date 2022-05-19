@@ -5,12 +5,18 @@ class UsersController < ApplicationController
   before_action :find_user, only: %i[edit update]
 
   def index
+    authorize! current_user
+
     @users = User.all
   end
 
-  def edit; end
+  def edit
+    authorize! @user
+  end
 
   def update
+    authorize! @user
+
     if @user.update(user_params)
       flash.now[:info] = 'User successfully updated!'
 

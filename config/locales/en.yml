@@ -31,6 +31,7 @@
 
 en:
   login_warning: "Sorry, but you have no access yet. Please sign in first."
+  unauthorized_error: "One more time and I'll call the FBI"
   time:
     formats:
       default: "%d/%m/%Y %H:%M"

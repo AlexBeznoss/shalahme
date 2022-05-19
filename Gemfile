@@ -53,6 +53,8 @@ gem 'bootsnap', require: false
 gem 'discard', '~> 1.2'
 gem 'pry', '~> 0.13.1', require: false
 
+gem 'action_policy'
+
 # Auth
 gem 'omniauth'
 gem 'omniauth-github'
