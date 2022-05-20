@@ -51,7 +51,7 @@ gem 'bootsnap', require: false
 # gem "image_processing", "~> 1.2"
 
 gem 'discard', '~> 1.2'
-gem 'pry', '~> 0.13.1', require: false
+gem 'pry', '~> 0.14.1', require: false
 
 # Auth
 gem 'omniauth'
