@@ -50,8 +50,9 @@ gem 'bootsnap', require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'discard', '~> 1.2'
-gem 'pry', '~> 0.14.1', require: false
+gem 'counter_culture'
+gem 'discard'
+gem 'interactor'
 
 # Auth
 gem 'omniauth'
@@ -62,6 +63,7 @@ gem 'omniauth-rails_csrf_protection'
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'pry', require: false
   gem 'rubocop-minitest'
   gem 'rubocop-rails'
   gem 'standard'
@@ -82,5 +84,6 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'cuprite'
+  gem 'factory_bot_rails'
   gem 'faker'
 end
