@@ -48,16 +48,6 @@ module UsersControllerTest
 
       assert_redirected_to root_path
     end
-
-    test 'does not allow admin edit himself' do
-      admin = users(:google)
-      admin.update(role: :admin)
-
-      sign_in(admin)
-      get edit_user_path(admin)
-
-      assert_redirected_to root_path
-    end
   end
 
   class UpdateTest < ActionDispatch::IntegrationTest
@@ -87,18 +77,6 @@ module UsersControllerTest
       end
 
       assert_redirected_to users_path
-    end
-
-    test 'does not allow admin update himself' do
-      admin = users(:google)
-      admin.update(role: :admin)
-
-      sign_in(admin)
-      assert_no_changes -> { admin.reload.role }, 'admin' do
-        put user_path(admin), params: { user: { role: 'default' } }
-      end
-
-      assert_redirected_to root_path
     end
   end
 end
