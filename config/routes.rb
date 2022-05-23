@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   delete 'sessions', to: 'sessions#destroy'
 
   resources :phones
+  resources :users, only: %i[index edit update]
 end
