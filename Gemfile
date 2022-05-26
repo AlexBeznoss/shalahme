@@ -55,6 +55,7 @@ gem 'pry', '~> 0.14.1', require: false
 
 gem 'action_policy'
 
+
 # Auth
 gem 'omniauth'
 gem 'omniauth-github'
@@ -85,4 +86,5 @@ group :test do
   gem 'capybara'
   gem 'cuprite'
   gem 'faker'
+  gem 'mocha'
 end
