@@ -55,7 +55,6 @@ gem 'pry', '~> 0.14.1', require: false
 
 gem 'action_policy'
 
-
 # Auth
 gem 'omniauth'
 gem 'omniauth-github'
