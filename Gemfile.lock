@@ -132,6 +132,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     minitest (5.15.0)
+    mocha (1.14.0)
     msgpack (1.5.1)
     multi_json (1.15.0)
     multi_xml (0.6.0)
@@ -299,6 +300,7 @@ DEPENDENCIES
   discard (~> 1.2)
   faker
   jsbundling-rails
+  mocha
   omniauth
   omniauth-github
   omniauth-google-oauth2
