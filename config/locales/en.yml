@@ -35,3 +35,14 @@ en:
   time:
     formats:
       default: "%d/%m/%Y %H:%M"
+
+
+  errors:
+    not_found:
+      top_paragraph: "404 error"
+      title: "Page not found"
+      bottom_paragraph: "Sorry, we couldn’t find the page you’re looking for."
+    internal_server_error:
+      top_paragraph: "500 error"
+      title: "Ooooops!"
+      bottom_paragraph: "Something went wrong"
