@@ -4,7 +4,7 @@ module Dialogs
   class FindUserNumber
     Error = Struct.new(:full_message)
     Errors = Struct.new(:full_message) do
-      def has_key?(key)
+      def has_key?(key) # rubcop:disable Naming/PredicateName
         key == :user_number_id
       end
 
