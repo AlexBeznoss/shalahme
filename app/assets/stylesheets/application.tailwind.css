@@ -8,6 +8,7 @@
 @import "./dialogs.css";
 @import "./messages.css";
 @import "./flash.css";
+@import "./users.css";
 
 .turbo-progress-bar {
   @apply h-1 bg-blue-700;

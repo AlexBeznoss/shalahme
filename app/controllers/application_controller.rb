@@ -2,6 +2,11 @@
 
 class ApplicationController < ActionController::Base
   include Pagy::Backend
+  rescue_from ActionPolicy::Unauthorized do |_ex|
+    flash[:error] = t('unauthorized_error')
+
+    redirect_to root_path
+  end
 
   private
 

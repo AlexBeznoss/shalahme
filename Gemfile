@@ -55,6 +55,8 @@ gem 'discard'
 gem 'interactor'
 gem 'pagy'
 
+gem 'action_policy'
+
 # Auth
 gem 'omniauth'
 gem 'omniauth-github'
@@ -88,4 +90,5 @@ group :test do
   gem 'capybara'
   gem 'cuprite'
   gem 'factory_bot_rails'
+  gem 'mocha'
 end
