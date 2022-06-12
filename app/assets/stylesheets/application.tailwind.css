@@ -5,9 +5,18 @@
 @import "./header.css";
 @import "./buttons.css";
 @import "./phones.css";
+@import "./dialogs.css";
+@import "./messages.css";
 @import "./flash.css";
 
 .turbo-progress-bar {
   @apply h-1 bg-blue-700;
 }
 
+.disabled_link {
+  color: currentColor;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.5;
+  text-decoration: none;
+}

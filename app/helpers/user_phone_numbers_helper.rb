@@ -3,7 +3,7 @@
 module UserPhoneNumbersHelper
   BASE_URL = 'https://avatars.dicebear.com/api/'
 
-  def phone_logo_url(phone)
+  def user_phone_logo_url(phone)
     [
       BASE_URL,
       'initials',

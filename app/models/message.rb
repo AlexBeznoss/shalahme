@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Message < ApplicationRecord
-  belongs_to :dialog
+  belongs_to :dialog, touch: true
 
   counter_culture(
     :dialog,

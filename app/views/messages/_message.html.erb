@@ -1,0 +1,17 @@
+<%= turbo_frame_tag message, class: "flex #{message.outbound? ? 'flex-row-reverse' : ''}" do %>
+  <div class="relative max-w-[75%] min-w-[9rem] p-2 my-4 shadow-sm rounded-xl leading-5 border text-gray-700 <%= message.inbound? ? 'bg-sky-50 border-sky-100' : 'bg-gray-100 border-gray-200' %>">
+    <div>
+      <%= message.content %>
+    </div>
+    <div class="absolute flex justify-between w-full -bottom-5 right-0 text-xs text-gray-300">
+      <div>
+        <%= local_time(message.created_at) %>
+      </div>
+      <% if message.outbound? %>
+        <div class="<%= message.status.in?(%w[failed undelivered]) ? 'text-red-300' : '' %>">
+          <%= message.status %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

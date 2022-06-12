@@ -8,7 +8,11 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'dashboard', to: 'pages#dashboard'
   get 'auth/:provider/callback', to: 'sessions#create'
-  delete 'sessions', to: 'sessions#destroy'
+  get 'sessions', to: 'sessions#destroy'
 
   resources :phones
+  resources :dialogs, only: %i[index new create] do
+    resources :messages, only: %i[index new create]
+  end
+  resources :convos, only: %i[index show]
 end

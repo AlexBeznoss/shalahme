@@ -1,0 +1,13 @@
+<%= turbo_frame_tag "messages_page_#{@pagy.page}",  class: "flex flex-col-reverse" do %>
+  <% if @messages.empty? %>
+    <%= render "empty_messages" %>
+  <% else %>
+    <%= render @messages %>
+  <% end %>
+
+  <% if @pagy.next %>
+    <%= turbo_frame_tag "messages_page_#{@pagy.next}", src: dialog_messages_path(@dialog, page: @pagy.next), loading: "lazy", class: "flex flex-col-reverse" do %>
+      <%= render "layouts/loader" %>
+    <% end %>
+  <% end %>
+<% end %>

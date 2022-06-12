@@ -4,6 +4,6 @@ module Dialogs
   class StartDialog
     include Interactor::Organizer
 
-    organize CreateRecipient, CreateDialog, CreateMessage
+    organize FindUserNumber, CreateRecipient, CreateDialog
   end
 end

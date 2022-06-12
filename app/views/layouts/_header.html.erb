@@ -11,6 +11,7 @@
           <% if signed_in? %>
             <%= nav_link_to "Dashboard", root_path, class: "item" %>
             <%= nav_link_to "Phone numbers", phones_path, class: "item" %>
+            <%= nav_link_to "Convos", convos_path, class: "item" %>
           <% else %>
             <%= nav_link_to "Home", root_path, class: "item" %>
           <% end %>
@@ -40,7 +41,7 @@
             <div class="dropdown hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1" data-controller="header-menu" data-header-menu-trigger-value="user-menu-button">
               <!-- Active: "bg-gray-100", Not Active: "" -->
 
-              <%= link_to "Sign out", sessions_path, class: "item", role: "menuitem", data: {"turbo-method": "delete"} %>
+              <%= link_to "Sign out", sessions_path, class: "item", role: "menuitem" %>
             </div>
           </div>
         </div>
@@ -94,6 +95,7 @@
       <% if signed_in? %>
         <%= nav_link_to "Dashboard", root_path, class: "item" %>
         <%= nav_link_to "Phone numbers", phones_path, class: "item" %>
+        <%= nav_link_to "Convos", convos_path, class: "item" %>
       <% else %>
         <%= nav_link_to "Home", root_path, class: "item" %>
       <% end %>
@@ -110,7 +112,7 @@
           </div>
         </div>
         <div class="actions">
-          <%= link_to "Sign out", sessions_path, class: "item", data: {"turbo-method": "delete"} %>
+          <%= link_to "Sign out", sessions_path, class: "item" %>
         </div>
       </div>
     <% else %>

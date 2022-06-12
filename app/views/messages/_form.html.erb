@@ -1,0 +1,28 @@
+<% with_errors = message.errors.present? %>
+<div class="new_message">
+  <%= form_with(model: message, url: dialog_messages_path(message.dialog), class: "relative", data: {controller: "message-form", action: "input->message-form#change"}) do |f| %>
+    <% if with_errors %>
+      <div class="error"><%= message.errors.first.full_message %></div>
+    <% end %>
+    <div class="new_message_container <%= with_errors ? 'with_error' : '' %>">
+      <%= f.label :content, "Content", class: "sr-only" %>
+      <%= f.text_area :content, placeholder: "Put your message here...", required: true, row: 4 %>
+
+      <div class="border-t border-gray-200 px-2 py-2 flex justify-between items-center space-x-3 sm:px-3">
+        <div class="flex flex-col text-xs text-gray-300">
+          <div class="flex justify-between">
+            <div>Characters amount:</div>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-300" data-message-form-target="chars">0</span>
+          </div>
+          <div class="flex justify-between mt-0.5">
+            <div>Number of segments:</div>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-indigo-100 text-indigo-300" data-message-form-target="segments">0</span>
+          </div>
+        </div>
+        <div class="flex-shrink-0">
+          <%= f.submit 'Send', class: "button--submit" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

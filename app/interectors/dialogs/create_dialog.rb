@@ -16,9 +16,5 @@ module Dialogs
         context.fail!(errors: dialog.errors)
       end
     end
-
-    def rollback
-      context.dialog.destroy! unless context.dialog.messages.exists?
-    end
   end
 end

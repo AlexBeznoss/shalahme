@@ -1,0 +1,9 @@
+<%= turbo_stream.remove "empty_messages" %>
+<%= turbo_stream.prepend "messages_page_1" do %>
+  <%= render @message %>
+<% end %>
+<%= turbo_stream.replace "#{dom_id(@message.dialog)}_new_message" do %>
+  <div class="px-4">
+    <%= render "messages/form", message: @message.dialog.messages.new %>
+  </div>
+<% end %>

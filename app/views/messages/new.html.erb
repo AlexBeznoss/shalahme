@@ -1,0 +1,7 @@
+<% content_for :title, "New message" %>
+
+<%= turbo_frame_tag "#{dom_id(@message.dialog)}_new_message" do %>
+  <div class="px-4">
+    <%= render "form", message: @message %>
+  </div>
+<% end %>

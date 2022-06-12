@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "dialogs_page_#{@pagy.page}", class: "-my-5 list-none max-h-full" do %>
+  <% if @dialogs.empty? %>
+    <%= render "empty_dialogs" %>
+  <% else %>
+    <%= render @dialogs %>
+  <% end %>
+
+  <% if @pagy.next %>
+    <%= turbo_frame_tag "dialogs_page_#{@pagy.next}", src: dialogs_path(page: @pagy.next, except: params[:except]), loading: "lazy" do %>
+      <div class="mt-6">
+        <%= render "layouts/loader" %>
+      </div>
+    <% end %>
+  <% end %>
+<% end %>

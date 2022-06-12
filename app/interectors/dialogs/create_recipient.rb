@@ -5,7 +5,7 @@ module Dialogs
     include Interactor
 
     def call
-      recipient = RecipientPhoneNumber.find_or_create_by(number: context.params[:number])
+      recipient = RecipientPhoneNumber.find_or_create_by(number: context.params[:recipient_number])
 
       if recipient.errors.empty?
         context.recipient = recipient

@@ -4,8 +4,17 @@
 
 import { application } from "./application"
 
+import FlashController from "./flash_controller.js"
+application.register("flash", FlashController)
+
+import FrontendRedirectController from "./frontend_redirect_controller.js"
+application.register("frontend-redirect", FrontendRedirectController)
+
 import HeaderMenuController from "./header_menu_controller.js"
 application.register("header-menu", HeaderMenuController)
 
-import FlashController from "./flash_controller.js"
-application.register("flash", FlashController)
+import LocalTimeController from "./local_time_controller.js"
+application.register("local-time", LocalTimeController)
+
+import MessageFormController from "./message_form_controller.js"
+application.register("message-form", MessageFormController)

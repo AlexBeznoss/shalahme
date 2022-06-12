@@ -5,7 +5,7 @@ class PhonesController < ApplicationController
   before_action :find_phone, only: %i[edit update destroy]
 
   def index
-    @phones = current_user.phone_numbers.kept
+    @phones = current_user.phone_numbers.kept.order(:created_at)
   end
 
   def new
