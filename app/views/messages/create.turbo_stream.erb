@@ -3,7 +3,9 @@
   <%= render @message %>
 <% end %>
 <%= turbo_stream.replace "#{dom_id(@message.dialog)}_new_message" do %>
-  <div class="px-4">
-    <%= render "messages/form", message: @message.dialog.messages.new %>
-  </div>
+  <%= turbo_frame_tag "#{dom_id(@message.dialog)}_new_message" do%>
+    <div class="px-4">
+      <%= render "messages/form", message: @message.dialog.messages.new %>
+    </div>
+  <% end %>
 <% end %>

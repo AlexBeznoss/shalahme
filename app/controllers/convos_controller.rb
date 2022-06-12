@@ -20,6 +20,8 @@ class ConvosController < ApplicationController
   private
 
   def redirect_to_current_dialog
+    return if params[:start_for]
+
     redirect_to convo_path(current_dialog) if current_dialog
   end
 
