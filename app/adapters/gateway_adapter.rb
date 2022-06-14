@@ -3,6 +3,8 @@
 class GatewayAdapter
   ENDPOINT = 'https://api.telnyx.com/v2'
 
+  NoAvailableNumbersError = Class.new(::StandardError)
+
   def self.connection
     @connection ||= Faraday.new(
       url: ENDPOINT,
@@ -29,7 +31,11 @@ class GatewayAdapter
       }
     )
 
-    number = JSON.parse(numbers.body)['data'][0]['phone_number']
+    numbers = JSON.parse(numbers.body)['data']
+
+    raise NoAvailableNumbersError, "area_code: #{area_code}" if numbers.empty?
+
+    number = numbers[0]['phone_number']
 
     connection.post(
       'number_orders', {
@@ -37,20 +43,6 @@ class GatewayAdapter
       }.to_json
     )
   end
-
-  # def provision_phone_number(area_code)
-  # numbers = connection.get("/search",
-  # limit: 1,
-  # phone_number_type: "mobile",
-  # features: [ "sms", "mms" ])
-
-  # raise NoAvailableNumbers.new("area_code: #{area_code}") unless numbers
-
-  # connection.post("order_phone_number")
-
-  # raise NumberNotAvalable.new("number: #{number}") if something
-  # true
-  # end
 
   def sent_message; end
 

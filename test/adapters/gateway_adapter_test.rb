@@ -27,9 +27,22 @@ class GatewayAdapterTest < ActiveSupport::TestCase
 
       assert_requested stub
     end
+
+    test 'raises NoAvailableNumbersError if no numbers' do
+      area_code = '850'
+
+      stub_available_numbers(area_code, nil)
+
+      error = assert_raises(GatewayAdapter::NoAvailableNumbersError) do
+        GatewayAdapter.provision_phone_number(area_code)
+      end
+
+      assert_equal "area_code: #{area_code}", error.message
+    end
   end
 
   def stub_available_numbers(area_code, number)
+    data = number ? [{ phone_number: number }] : []
     stub_request(:get, 'https://api.telnyx.com/v2/available_phone_numbers')
       .with(
         query: {
@@ -42,7 +55,7 @@ class GatewayAdapterTest < ActiveSupport::TestCase
           }
         },
         headers: request_headers
-      ).to_return(status: 200, body: { data: [{ phone_number: number }] }.to_json)
+      ).to_return(status: 200, body: { data: }.to_json)
   end
 
   def stub_number_orders(number)
