@@ -18,3 +18,6 @@ application.register("local-time", LocalTimeController)
 
 import MessageFormController from "./message_form_controller.js"
 application.register("message-form", MessageFormController)
+
+import TrackMessageReadController from "./track_message_read_controller.js"
+application.register("track-message-read", TrackMessageReadController)

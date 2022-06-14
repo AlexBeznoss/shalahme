@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "dialogs_page_#{@pagy.page}", class: "-my-5 list-none max-h-full" do %>
+<%= turbo_frame_tag "dialogs_page_#{@pagy.page}", class: "-my-5 max-h-full" do %>
   <% if @dialogs.empty? %>
     <%= render "empty_dialogs" %>
   <% else %>

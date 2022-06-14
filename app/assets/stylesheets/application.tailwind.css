@@ -9,6 +9,7 @@
 @import "./messages.css";
 @import "./flash.css";
 @import "./users.css";
+@import "./read_counter.css";
 
 .turbo-progress-bar {
   @apply h-1 bg-blue-700;

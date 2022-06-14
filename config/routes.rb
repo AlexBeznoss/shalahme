@@ -18,4 +18,12 @@ Rails.application.routes.draw do
   resources :dialogs, only: %i[index new create] do
     resources :messages, only: %i[index new create]
   end
+
+  namespace :api do
+    resources :messages, only: %i[] do
+      member do
+        post 'read', to: 'messages#read'
+      end
+    end
+  end
 end

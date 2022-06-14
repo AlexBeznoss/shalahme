@@ -20,6 +20,7 @@
               <% end %>
               <div class="flow-root mt-6">
                 <h4 class="px-6 border shadow-xs border-gray-100 bg-gray-50 text-stone-400">Dialogs</h4>
+                <%= turbo_stream_from [current_user, "dialogs"] %>
                 <%= turbo_frame_tag "dialogs_page_1", src: dialogs_path(except: @dialog&.id), loading: "lazy", class: "-my-5 list-none max-h-full", role: "list" do %>
                   <div class="mt-6">
                     <%= render "layouts/loader" %>
@@ -40,7 +41,7 @@
             <div class="p-6 divide-y divide-gray-200">
               <% if @dialog %>
                 <div class="max-h-[51vh] min-h-[9rem] mb-3 overflow-scroll flex flex-col-reverse">
-                  <%= turbo_stream_from [@dialog, "messages"] %>
+                  <%= turbo_stream_from [@dialog, "convo"] %>
                   <%= turbo_frame_tag "messages_page_1", src: dialog_messages_path(@dialog), loading: "lazy", class: "flex flex-col-reverse" do %>
                     <div class="mb-6">
                       <%= render "layouts/loader" %>
