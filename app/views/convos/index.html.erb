@@ -4,10 +4,10 @@
     <!-- Main 3 column grid -->
     <div class="grid grid-cols-1 gap-4 items-start lg:grid-cols-3 lg:gap-8">
       <!-- Left column -->
-      <div class="grid grid-cols-1 gap-4 max-h-[75vh] overflow-scroll">
+      <div class="grid grid-cols-1 gap-4 ">
         <section aria-labelledby="section-1-title">
           <h2 class="sr-only" id="section-1-title">Dialogs</h2>
-          <div class="rounded-lg bg-white overflow-hidden shadow">
+          <div class="rounded-lg bg-white shadow max-h-[85vh] overflow-scroll">
             <div class="py-6 relative">
               <% if params[:start_for] %>
                 <%= turbo_frame_tag "new_dialog", src: new_dialog_path(start_for: params[:start_for]) %>
@@ -19,9 +19,6 @@
                 <% end %>
               <% end %>
               <div class="flow-root mt-6">
-                <%= turbo_frame_tag "current_dialog", class: "list-none" do %>
-                  <%= render "dialogs/current", dialog: @dialog if @dialog %>
-                <% end %>
                 <h4 class="px-6 border shadow-xs border-gray-100 bg-gray-50 text-stone-400">Dialogs</h4>
                 <%= turbo_frame_tag "dialogs_page_1", src: dialogs_path(except: @dialog&.id), loading: "lazy", class: "-my-5 list-none max-h-full", role: "list" do %>
                   <div class="mt-6">
@@ -36,12 +33,13 @@
 
       <!-- Right column -->
       <div class="grid grid-cols-1 gap-4 lg:col-span-2 max-h-[75vh]">
+        <%= render "dialogs/current", dialog: @dialog if @dialog %>
         <section aria-labelledby="section-2-title">
-          <h2 class="sr-only" id="section-2-title">Section title</h2>
+          <h2 class="sr-only" id="section-2-title">Messages</h2>
           <div class="rounded-lg bg-white overflow-hidden shadow">
             <div class="p-6 divide-y divide-gray-200">
               <% if @dialog %>
-                <div class="max-h-[70vh] min-h-[9rem] mb-3 overflow-scroll flex flex-col-reverse">
+                <div class="max-h-[51vh] min-h-[9rem] mb-3 overflow-scroll flex flex-col-reverse">
                   <%= turbo_stream_from [@dialog, "messages"] %>
                   <%= turbo_frame_tag "messages_page_1", src: dialog_messages_path(@dialog), loading: "lazy", class: "flex flex-col-reverse" do %>
                     <div class="mb-6">
