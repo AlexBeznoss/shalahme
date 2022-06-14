@@ -10,7 +10,7 @@ class NumbersProvisionAdapterTest < ActiveSupport::TestCase
     stub = stub_available_numbers(area_code, number)
     stub_number_orders(number)
 
-    Gateway::Numbers::ProvisionAdapter.call(area_code)
+    GatewayAdapters::Numbers::Provision.call(area_code)
 
     assert_requested stub
   end
@@ -22,7 +22,7 @@ class NumbersProvisionAdapterTest < ActiveSupport::TestCase
     stub_available_numbers(area_code, number)
     stub = stub_number_orders(number)
 
-    Gateway::Numbers::ProvisionAdapter.call(area_code)
+    GatewayAdapters::Numbers::Provision.call(area_code)
 
     assert_requested stub
   end
@@ -32,8 +32,8 @@ class NumbersProvisionAdapterTest < ActiveSupport::TestCase
 
     stub_available_numbers(area_code, nil)
 
-    error = assert_raises(Gateway::Numbers::ProvisionAdapter::NoAvailableNumbersError) do
-      Gateway::Numbers::ProvisionAdapter.call(area_code)
+    error = assert_raises(GatewayAdapters::Numbers::Provision::NoAvailableNumbersError) do
+      GatewayAdapters::Numbers::Provision.call(area_code)
     end
 
     assert_equal "area_code: #{area_code}", error.message

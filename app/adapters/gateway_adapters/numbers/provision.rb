@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-module Gateway
+module GatewayAdapters
   module Numbers
-    class ProvisionAdapter < ::BaseGatewayAdapter
+    class Provision < ::BaseGatewayAdapter
       NoAvailableNumbersError = Class.new(::StandardError)
 
       def self.call(area_code)
