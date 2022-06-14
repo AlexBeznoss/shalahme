@@ -2,43 +2,41 @@
 
 require 'test_helper'
 
-class GatewayAdapterTest < ActiveSupport::TestCase
-  class ProvisionPhoneNumberTest < GatewayAdapterTest
-    test 'requests available numbers' do
-      area_code = '850'
-      number = '+18503608622'
+class NumbersProvisionAdapterTest < ActiveSupport::TestCase
+  test 'requests available numbers' do
+    area_code = '850'
+    number = '+18503608622'
 
-      stub = stub_available_numbers(area_code, number)
-      stub_number_orders(number)
+    stub = stub_available_numbers(area_code, number)
+    stub_number_orders(number)
 
-      GatewayAdapter.provision_phone_number(area_code)
+    Gateway::Numbers::ProvisionAdapter.call(area_code)
 
-      assert_requested stub
+    assert_requested stub
+  end
+
+  test 'requests number order' do
+    area_code = '850'
+    number = '+18503608622'
+
+    stub_available_numbers(area_code, number)
+    stub = stub_number_orders(number)
+
+    Gateway::Numbers::ProvisionAdapter.call(area_code)
+
+    assert_requested stub
+  end
+
+  test 'raises NoAvailableNumbersError if no numbers' do
+    area_code = '850'
+
+    stub_available_numbers(area_code, nil)
+
+    error = assert_raises(Gateway::Numbers::ProvisionAdapter::NoAvailableNumbersError) do
+      Gateway::Numbers::ProvisionAdapter.call(area_code)
     end
 
-    test 'requests number order' do
-      area_code = '850'
-      number = '+18503608622'
-
-      stub_available_numbers(area_code, number)
-      stub = stub_number_orders(number)
-
-      GatewayAdapter.provision_phone_number(area_code)
-
-      assert_requested stub
-    end
-
-    test 'raises NoAvailableNumbersError if no numbers' do
-      area_code = '850'
-
-      stub_available_numbers(area_code, nil)
-
-      error = assert_raises(GatewayAdapter::NoAvailableNumbersError) do
-        GatewayAdapter.provision_phone_number(area_code)
-      end
-
-      assert_equal "area_code: #{area_code}", error.message
-    end
+    assert_equal "area_code: #{area_code}", error.message
   end
 
   def stub_available_numbers(area_code, number)
