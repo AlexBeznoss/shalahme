@@ -9,10 +9,8 @@
         <%= dialog.user_phone_number.number %>
       </p>
     </div>
-    <% unless dialog.unread_messages_count.zero? %>
-      <div>
-        <%= render "dialogs/read_counter", dialog: dialog, element_class: "read_counter--index" %>
-      </div>
-    <% end %>
+    <div>
+      <%= render "dialogs/read_counter", dialog: dialog, element_class: "read_counter--index" %>
+    </div>
   </div>
 <% end %>
