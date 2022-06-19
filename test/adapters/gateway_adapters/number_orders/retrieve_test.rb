@@ -14,18 +14,15 @@ class NumberOrdersRetrieveAdapterTest < ActiveSupport::TestCase
   end
 
   def stub_number_orders(id)
-    stub_request(:get, "https://api.telnyx.com/v2/number_orders/#{id}").
-      with(
-      headers: request_headers
-    ).to_return(status: 200, body: {}.to_json)
+    stub_request(:get, "https://api.telnyx.com/v2/number_orders/#{id}")
+      .with(headers: request_headers).to_return(status: 200, body: {}.to_json)
   end
 
   def request_headers
     {
-      'Accept' => 'application/json',
+      'Accept' => '*/*',
       'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
       'Authorization' => /Bearer/,
-      'Content-Type' => 'application/json',
       'User-Agent' => 'Faraday v2.3.0'
     }
   end

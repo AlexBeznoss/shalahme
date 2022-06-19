@@ -6,8 +6,7 @@ module GatewayAdapters
       NoAvailableNumbersError = Class.new(::StandardError)
 
       def self.call(area_code)
-        numbers = available_phone_numbers(area_code)
-                  .then { |response| JSON.parse(response.body)['data'] }
+        numbers = available_phone_numbers(area_code).then { |r| r.body['data'] }
 
         raise NoAvailableNumbersError, "area_code: #{area_code}" if numbers.empty?
 
@@ -18,11 +17,11 @@ module GatewayAdapters
         connection.get(
           'available_phone_numbers', {
             filter: {
+              phone_number: { starts_with: area_code },
               country_code: 'US',
-              best_effort: false,
               features: %w[sms mms],
               limit: 1,
-              phone_number: { starts_with: area_code }
+              best_effort: false
             }
           }
         )

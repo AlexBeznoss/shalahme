@@ -44,16 +44,15 @@ class NumbersProvisionAdapterTest < ActiveSupport::TestCase
     stub_request(:get, 'https://api.telnyx.com/v2/available_phone_numbers')
       .with(
         query: {
-          filter: {
-            country_code: 'US',
-            best_effort: false,
-            features: %w[sms mms],
-            limit: 1,
-            phone_number: { starts_with: area_code }
-          }
+          'filter[phone_number][starts_with]' => area_code,
+          'filter[country_code]' => 'US',
+          'filter[features][0]' => 'sms',
+          'filter[features][1]' => 'mms',
+          'filter[limit]' => 1,
+          'filter[best_effort]' => false
         },
         headers: request_headers
-      ).to_return(status: 200, body: { data: }.to_json)
+      ).to_return(status: 200, body: { data: }.to_json, headers: { content_type: 'application/json' })
   end
 
   def stub_number_orders(number)
@@ -66,10 +65,9 @@ class NumbersProvisionAdapterTest < ActiveSupport::TestCase
 
   def request_headers
     {
-      'Accept' => 'application/json',
+      'Accept' => '*/*',
       'Accept-Encoding' => 'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
       'Authorization' => /Bearer/,
-      'Content-Type' => 'application/json',
       'User-Agent' => 'Faraday v2.3.0'
     }
   end
