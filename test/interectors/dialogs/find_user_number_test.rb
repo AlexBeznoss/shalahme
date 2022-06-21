@@ -49,9 +49,10 @@ module Dialogs
           errors = []
 
           interactor = Dialogs::FindUserNumber.call(user: @user, params: { user_phone_number: "doesn't matter" })
-          interactor.errors.each { |e| errors << e.full_message }
+          interactor.errors.each { |e| errors << e }
 
-          assert_equal expected_errors, errors
+          assert_equal expected_errors, errors.map(&:full_message)
+          assert interactor.errors.has_key?(:user_number_id) # rubocop:disable Style/PreferredHashMethods
         end
       end
     end
