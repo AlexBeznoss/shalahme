@@ -2,7 +2,7 @@
 
 FactoryBot.define do
   factory :user_phone_number do
-    name { Faker::Cannabis.cannabinoid }
+    sequence(:name) { |n| Faker::Cannabis.cannabinoid + " - #{n}" }
     area_code { Faker::PhoneNumber.area_code }
     association :user
 
