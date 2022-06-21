@@ -8,10 +8,7 @@ module Api
     def read
       authorize! @message
 
-      Messages::Read.call(
-        message: @message,
-        current_user:
-      )
+      Messages::Read.call(message: @message, current_user:)
 
       head :ok
     end

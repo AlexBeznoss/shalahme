@@ -6,21 +6,21 @@ module Dialogs
   module CreateRecipientTest
     class SuccessTest < ActiveSupport::TestCase
       test 'creates recipient when not exists' do
-        number = '+1232232323'
+        recipient_number = '+1232232323'
         assert_changes -> { RecipientPhoneNumber.count }, from: 0, to: 1 do
           Dialogs::CreateRecipient.call(
-            params: { number: }
+            params: { recipient_number: }
           )
         end
 
         recipient = RecipientPhoneNumber.last
-        assert_equal number, recipient.number
+        assert_equal recipient_number, recipient.number
       end
 
       test 'adds recipient to context' do
         recipient = create(:recipient_phone_number)
 
-        interactor = Dialogs::CreateRecipient.call(params: { number: recipient.number })
+        interactor = Dialogs::CreateRecipient.call(params: { recipient_number: recipient.number })
 
         assert_predicate interactor, :success?
         assert_equal recipient, interactor.recipient
@@ -29,7 +29,7 @@ module Dialogs
       test 'not creates dialog if exists' do
         recipient = create(:recipient_phone_number)
         assert_no_changes -> { RecipientPhoneNumber.count } do
-          Dialogs::CreateRecipient.call(params: { number: recipient.number })
+          Dialogs::CreateRecipient.call(params: { recipient_number: recipient.number })
         end
       end
     end

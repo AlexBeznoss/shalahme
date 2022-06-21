@@ -73,35 +73,5 @@ module Dialogs
         end
       end
     end
-
-    class RollbackTest < ActiveSupport::TestCase
-      setup do
-        @recipient_phone = create(:recipient_phone_number)
-        @user_phone = create(:user_phone_number)
-        @dialog = create(
-          :dialog,
-          recipient_phone_number: @recipient_phone,
-          user_phone_number: @user_phone
-        )
-        @interactor = Dialogs::CreateDialog.new(
-          recipient: @recipient_phone,
-          user_phone_number: @user_phone,
-          dialog: @dialog
-        )
-      end
-
-      test 'destroys dialog if no messages' do
-        assert_changes -> { Dialog.count }, from: 1, to: 0 do
-          @interactor.rollback
-        end
-      end
-
-      test 'not destroys dialog if there are messages' do
-        create(:message, :outbound, :sms, dialog: @dialog)
-        assert_no_changes -> { Dialog.count } do
-          @interactor.rollback
-        end
-      end
-    end
   end
 end

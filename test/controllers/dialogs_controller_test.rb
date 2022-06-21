@@ -9,7 +9,7 @@ module DialogsControllerTest
 
     test 'requires authentication' do
       assert_requires_authentication_for(
-        :get, '/phones/1/dialogs/new'
+        :get, '/dialogs/new'
       )
     end
   end
@@ -19,7 +19,7 @@ module DialogsControllerTest
 
     test 'requires authentication' do
       assert_requires_authentication_for(
-        :post, '/phones/1/dialogs'
+        :post, '/dialogs'
       )
     end
   end
