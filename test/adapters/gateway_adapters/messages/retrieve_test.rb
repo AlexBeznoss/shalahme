@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class MessagesSendAdapterTest < ActiveSupport::TestCase
+class MessagesRetrieveAdapterTest < ActiveSupport::TestCase
   test 'requests message creation' do
     id = '40385f64-5717-4562'
 
