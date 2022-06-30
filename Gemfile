@@ -86,4 +86,5 @@ group :test do
   gem 'cuprite'
   gem 'faker'
   gem 'mocha'
+  gem 'webmock'
 end
