@@ -13,9 +13,21 @@ class MessagesRetrieveAdapterTest < ActiveSupport::TestCase
     assert_requested stub
   end
 
-  def stub_messages(id)
+  test 'returns pulled response data' do
+    id = '40385f64-5717-4562'
+    data = { 'id' => id }
+
+    stub_messages(id, data:)
+
+    result = GatewayAdapters::Messages::Retrieve.call(id)
+
+    assert_equal result, data
+  end
+
+  def stub_messages(id, data: {})
     stub_request(:get, "https://api.telnyx.com/v2/messages/#{id}")
-      .with(headers: request_headers).to_return(status: 200)
+      .with(headers: request_headers)
+      .to_return(status: 200, body: { data: }.to_json, headers: { content_type: 'application/json' })
   end
 
   def request_headers

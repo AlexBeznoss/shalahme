@@ -13,9 +13,21 @@ class NumberOrdersRetrieveAdapterTest < ActiveSupport::TestCase
     assert_requested stub
   end
 
-  def stub_number_orders(id)
+  test 'returns pulled response data' do
+    id = '1293384261075731499'
+    data = { 'id' => id }
+
+    stub_number_orders(id, data:)
+
+    result = GatewayAdapters::NumberOrders::Retrieve.call(id)
+
+    assert_equal result, data
+  end
+
+  def stub_number_orders(id, data: {})
     stub_request(:get, "https://api.telnyx.com/v2/number_orders/#{id}")
-      .with(headers: request_headers).to_return(status: 200, body: {}.to_json)
+      .with(headers: request_headers)
+      .to_return(status: 200, body: { data: }.to_json, headers: { content_type: 'application/json' })
   end
 
   def request_headers

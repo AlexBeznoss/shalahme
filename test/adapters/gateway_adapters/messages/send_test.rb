@@ -15,10 +15,24 @@ class MessagesSendAdapterTest < ActiveSupport::TestCase
     assert_requested stub
   end
 
-  def stub_messages(from, to, text)
+  test 'returns pulled response data' do
+    from = '+13115552368'
+    to = '+13115552367'
+    text = 'Message body'
+    data = { 'id' => '40385f64-5717-4562-b3fc-2c963f66afa6' }
+
+    stub_messages(from, to, text, data:)
+
+    result = GatewayAdapters::Messages::Send.call(from, to, text)
+
+    assert_equal result, data
+  end
+
+  def stub_messages(from, to, text, data: {})
     body = { from:, to:, text: }.to_json
     stub_request(:post, 'https://api.telnyx.com/v2/messages')
-      .with(headers: request_headers, body:).to_return(status: 200)
+      .with(headers: request_headers, body:)
+      .to_return(status: 200, body: { data: }.to_json, headers: { content_type: 'application/json' })
   end
 
   def request_headers

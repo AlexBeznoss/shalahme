@@ -4,7 +4,7 @@ module GatewayAdapters
   module NumberOrders
     class Retrieve < ::BaseGatewayAdapter
       def call(id)
-        conn.get("number_orders/#{id}")
+        conn.get("number_orders/#{id}").then(&PULL_DATA)
       end
     end
   end
