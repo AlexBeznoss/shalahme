@@ -15,5 +15,6 @@ module ActiveSupport
     fixtures :all
 
     # Add more helper methods to be used by all tests here...
+    WebMock.disable_net_connect!(allow_localhost: true)
   end
 end

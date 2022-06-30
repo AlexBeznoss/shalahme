@@ -42,17 +42,14 @@ class NumbersProvisionAdapterTest < ActiveSupport::TestCase
   def stub_available_numbers(area_code, number)
     data = number ? [{ phone_number: number }] : []
     stub_request(:get, 'https://api.telnyx.com/v2/available_phone_numbers')
-      .with(
-        query: {
-          'filter[phone_number][starts_with]' => area_code,
-          'filter[country_code]' => 'US',
-          'filter[features][0]' => 'sms',
-          'filter[features][1]' => 'mms',
-          'filter[limit]' => 1,
-          'filter[best_effort]' => false
-        },
-        headers: request_headers
-      ).to_return(status: 200, body: { data: }.to_json, headers: { content_type: 'application/json' })
+      .with(query: { 'filter[phone_number][starts_with]' => area_code,
+                     'filter[country_code]' => 'US',
+                     'filter[features][0]' => 'sms',
+                     'filter[features][1]' => 'mms',
+                     'filter[limit]' => 1,
+                     'filter[best_effort]' => false },
+            headers: request_headers)
+      .to_return(status: 200, body: { data: }.to_json, headers: { content_type: 'application/json' })
   end
 
   def stub_number_orders(number)
