@@ -18,6 +18,13 @@ module Authentication
     assert_equal I18n.t('login_warning'), flash[:warning]
   end
 
+  def assert_api_requires_authentication_for(method_name, path)
+    public_send(method_name, path)
+
+    assert_response :unauthorized
+    assert_equal '{}', @response.body
+  end
+
   private
 
   def prep_social_info_from(user)

@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "#{dom_id(dialog)}_read_counter_#{type}" do %>
+  <% # it should on one line to apply :empty pseudo element styling %>
+  <div class="read_counter read_counter--<%= type %>"><%= dialog.unread_messages_count unless dialog.unread_messages_count.zero? %></div>
+<% end %>

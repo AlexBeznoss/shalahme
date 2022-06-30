@@ -10,8 +10,20 @@ Rails.application.routes.draw do
   root 'pages#home'
   get 'dashboard', to: 'pages#dashboard'
   get 'auth/:provider/callback', to: 'sessions#create'
-  delete 'sessions', to: 'sessions#destroy'
+  get 'sessions', to: 'sessions#destroy'
 
   resources :phones
   resources :users, only: %i[index edit update]
+  resources :convos, only: %i[index show]
+  resources :dialogs, only: %i[index new create] do
+    resources :messages, only: %i[index new create]
+  end
+
+  namespace :api do
+    resources :messages, only: %i[] do
+      member do
+        post 'read', to: 'messages#read'
+      end
+    end
+  end
 end

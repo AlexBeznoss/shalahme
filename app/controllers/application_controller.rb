@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pagy::Backend
   rescue_from ActionPolicy::Unauthorized do |_ex|
     flash[:error] = t('unauthorized_error')
 

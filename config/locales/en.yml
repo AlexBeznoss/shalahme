@@ -36,6 +36,10 @@ en:
     formats:
       default: "%d/%m/%Y %H:%M"
 
+  activerecord:
+    attributes:
+      recipient_phone_number:
+        number: "Recipient phone number"
 
   errors:
     not_found:

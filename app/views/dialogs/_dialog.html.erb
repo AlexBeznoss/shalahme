@@ -1,0 +1,16 @@
+<%= link_to convo_path(dialog), class: "block py-4 px-6 border-b border-gray-200 hover:bg-gray-50", data: { 'turbo-frame': "_top" } do %>
+  <div class="flex items-center space-x-4">
+    <div class="flex-1 min-w-0">
+      <p class="text-sm font-medium text-gray-900 truncate">To: <%= dialog.recipient_phone_number.number %></p>
+      <p class="text-sm font-medium text-gray-900 truncate">
+        From: <%= dialog.user_phone_number.name %>
+      </p>
+      <p class="text-xs text-gray-500 truncate">
+        <%= dialog.user_phone_number.number %>
+      </p>
+    </div>
+    <div>
+      <%= render "dialogs/read_counter", dialog: dialog, type: "index" %>
+    </div>
+  </div>
+<% end %>

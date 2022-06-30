@@ -1,0 +1,9 @@
+<% content_for :title, "New dialog" %>
+
+<%= turbo_frame_tag "new_dialog" do %>
+  <div class="new_dialog_container">
+    <div class="px-4">
+      <%= render "form", dialog: @dialog %>
+    </div>
+  </div>
+<% end %>
