@@ -3,6 +3,12 @@
 require 'test_helper'
 
 class NumbersProvisionAdapterTest < ActiveSupport::TestCase
+  test 'nested from BaseGatewayAdapter' do
+    adapter_class = GatewayAdapters::Numbers::Provision
+
+    assert_equal adapter_class.superclass, BaseGatewayAdapter
+  end
+
   test 'requests available numbers' do
     area_code = '850'
     number = '+18503608622'

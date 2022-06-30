@@ -3,6 +3,12 @@
 require 'test_helper'
 
 class NumberOrdersRetrieveAdapterTest < ActiveSupport::TestCase
+  test 'nested from BaseGatewayAdapter' do
+    adapter_class = GatewayAdapters::NumberOrders::Retrieve
+
+    assert_equal adapter_class.superclass, BaseGatewayAdapter
+  end
+
   test 'retrieves number order' do
     id = '1293384261075731499'
 
@@ -11,17 +17,6 @@ class NumberOrdersRetrieveAdapterTest < ActiveSupport::TestCase
     GatewayAdapters::NumberOrders::Retrieve.call(id)
 
     assert_requested stub
-  end
-
-  test 'returns pulled response data' do
-    id = '1293384261075731499'
-    data = { 'id' => id }
-
-    stub_number_orders(id, data:)
-
-    result = GatewayAdapters::NumberOrders::Retrieve.call(id)
-
-    assert_equal result, data
   end
 
   def stub_number_orders(id, data: {})

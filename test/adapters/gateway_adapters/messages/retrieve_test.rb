@@ -3,6 +3,12 @@
 require 'test_helper'
 
 class MessagesRetrieveAdapterTest < ActiveSupport::TestCase
+  test 'nested from BaseGatewayAdapter' do
+    adapter_class = GatewayAdapters::Messages::Retrieve
+
+    assert_equal adapter_class.superclass, BaseGatewayAdapter
+  end
+
   test 'requests message creation' do
     id = '40385f64-5717-4562'
 
@@ -11,17 +17,6 @@ class MessagesRetrieveAdapterTest < ActiveSupport::TestCase
     GatewayAdapters::Messages::Retrieve.call(id)
 
     assert_requested stub
-  end
-
-  test 'returns pulled response data' do
-    id = '40385f64-5717-4562'
-    data = { 'id' => id }
-
-    stub_messages(id, data:)
-
-    result = GatewayAdapters::Messages::Retrieve.call(id)
-
-    assert_equal result, data
   end
 
   def stub_messages(id, data: {})

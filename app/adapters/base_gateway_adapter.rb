@@ -18,7 +18,7 @@ class BaseGatewayAdapter
   end
 
   def self.call(*args)
-    new.call(*args)
+    new.call(*args).then(&PULL_DATA)
   end
 
   private
