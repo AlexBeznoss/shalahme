@@ -10,7 +10,7 @@ class BaseGatewayAdapterTest < ActiveSupport::TestCase
   end
 
   test 'returns pulled response data' do
-    data = { id: '1293384261075731499' }
+    data = { 'id' => '1293384261075731499' }
 
     stub_dummy(data:)
 
