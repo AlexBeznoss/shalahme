@@ -11,6 +11,15 @@ module Api
 
           assert_response :ok
         end
+
+        test 'handles number_order.complete' do
+          user = users(:google)
+          number = user.phone_numbers.create!
+
+          post '/api/webhooks/telnyx'
+
+          assert_equal(:ready, number.reload.status)
+        end
       end
     end
   end
