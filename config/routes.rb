@@ -14,4 +14,10 @@ Rails.application.routes.draw do
 
   resources :phones
   resources :users, only: %i[index edit update]
+
+  namespace :api do
+    namespace :webhooks do
+      resource :telnyx, only: [:create], controller: 'telnyx'
+    end
+  end
 end

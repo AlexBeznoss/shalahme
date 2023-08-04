@@ -2,25 +2,25 @@
 
 require 'test_helper'
 
-class NumberOrdersRetrieveAdapterTest < ActiveSupport::TestCase
+class PhoneNumbersRetrieveAdapterTest < ActiveSupport::TestCase
   test 'nested from BaseGatewayAdapter' do
-    adapter_class = GatewayAdapters::NumberOrders::Retrieve
+    adapter_class = GatewayAdapters::PhoneNumbers::Retrieve
 
     assert_equal adapter_class.superclass, BaseGatewayAdapter
   end
 
-  test 'retrieves number order' do
+  test 'retrieves phone number' do
     id = '1293384261075731499'
 
-    stub = stub_number_orders(id)
+    stub = stub_phone_numbers(id)
 
-    GatewayAdapters::NumberOrders::Retrieve.call(id)
+    GatewayAdapters::PhoneNumbers::Retrieve.call(id)
 
     assert_requested stub
   end
 
-  def stub_number_orders(id, data: {})
-    stub_request(:get, "https://api.telnyx.com/v2/number_orders/#{id}")
+  def stub_phone_numbers(id, data: {})
+    stub_request(:get, "https://api.telnyx.com/v2/phone_numbers/#{id}")
       .with(headers: request_headers)
       .to_return(status: 200, body: { data: }.to_json, headers: { content_type: 'application/json' })
   end
